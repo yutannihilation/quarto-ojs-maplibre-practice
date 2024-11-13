@@ -1,4 +1,5 @@
 An attempt to share data between R and Observable JS on a Quarto document.
+The code is based on these great tutorials:
 
 * [Hello MapLibre / Nicolas Lambert | Observable](https://observablehq.com/@neocartocnrs/hello-maplibre)
 * [【初級編】MapLibre GL JSを使ったWebGIS作成](https://zenn.dev/asahina820/books/c29592e397a35b)
