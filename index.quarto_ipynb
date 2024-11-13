@@ -1,0 +1,41 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Using MapLibre on Quarto OJS\"\n",
+        "format: html\n",
+        "---\n",
+        "\n",
+        "```{ojs}\n",
+        "maplibregl = require(\"maplibre-gl@4.3.2\")\n",
+        "```\n",
+        "\n",
+        "```{html}\n",
+        "<link href='https://unpkg.com/maplibre-gl@4.3.2/dist/maplibre-gl.css' rel='stylesheet' />\n",
+        "```\n",
+        "\n",
+        "```{ojs}\n",
+        "var map = new maplibregl.Map({\n",
+        "  container: 'map',\n",
+        "  style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル\n",
+        "  center: [139.7024, 35.6598], // 中心座標\n",
+        "  zoom: 16, // ズームレベル\n",
+        "});\n",
+        "```"
+      ],
+      "id": "458f402d"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

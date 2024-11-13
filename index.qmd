@@ -1,0 +1,137 @@
+---
+title: "Using MapLibre on Quarto OJS"
+format: html
+---
+
+## References
+
+* [Hello MapLibre / Nicolas Lambert | Observable](https://observablehq.com/@neocartocnrs/hello-maplibre)
+* [【初級編】MapLibre GL JSを使ったWebGIS作成](https://zenn.dev/asahina820/books/c29592e397a35b)
+
+## Setup
+
+Load MapLibre library.
+
+```{ojs}
+maplibregl = require("maplibre-gl@4.3.2")
+```
+
+Load CSS.
+
+```{ojs}
+html`<link href='https://unpkg.com/maplibre-gl@4.3.2/dist/maplibre-gl.css' rel='stylesheet' />`
+```
+
+## Basic usage
+
+```{ojs}
+Japan = {
+    const container = yield html`<div style="height:400px;">`;
+    const map = (container.value = new maplibregl.Map({
+        container,
+        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json',
+        center: [139.7024, 35.6598],
+        zoom: 16,
+    }));
+}
+```
+
+## Pass simple data from R
+
+Define the marker location on R's side.
+
+```{r}
+markers <- tibble::tibble(
+    long = 139.70356,
+    lat = 35.65901,
+    popup = list(
+        list(options = list(offset = 25L, closeButton = FALSE), title = "渋谷ヒカリエ")
+    )
+)
+
+# Make this data available to OJS
+ojs_define(markers)
+```
+
+```{ojs}
+Japan_with_marker = {
+    const container = yield html`<div style="height:400px;">`;
+    const map = (container.value = new maplibregl.Map({
+        container,
+        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json',
+        center: [139.7024, 35.6598],
+        zoom: 16,
+    }));
+
+    map.on('load', async () => {
+        transpose(markers).map((m) => {
+            var popup = new maplibregl.Popup(m.popup.options).setText(m.popup.title);
+            var loc = [m.long, m.lat];
+            var tmp = new maplibregl.Marker().setLngLat(loc).setPopup(popup).addTo(map);
+        });
+    })
+}
+```
+
+## Pass Geospatial data
+
+**国土交通省国土数値情報ダウンロードサイト（<https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html>）を加工して作成**
+
+```{r}
+#| warning: false
+library(sf)
+
+d <- read_sf("data-raw/P27-13_13/")
+
+d |>
+  dplyr::select(name = P27_005) |>
+  write_sf("data/point.geojson")
+```
+
+```{ojs}
+Japan_geojson = {
+    const container = yield html`<div style="height:400px;">`;
+    const map = (container.value = new maplibregl.Map({
+        container,
+        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json',
+        center: [139.7024, 35.6598],
+        zoom: 15,
+    }));
+
+    map.on('load', async () => {
+        const iconImage = await map.loadImage('./images/icon.png');
+        map.addImage('facility_icon', iconImage.data);
+        map.addSource('facility_point', {
+            type: 'geojson',
+            data: './data/point.geojson',
+        });
+        map.addLayer({
+            id: 'facility_point',
+            type: 'symbol',
+            source: 'facility_point',
+            layout: {
+            'icon-image': 'facility_icon',
+            'icon-size': 0.1,
+            },
+        });
+    });
+
+    map.on('click', 'facility_point', (e) => {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var name = e.features[0].properties.name;
+
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+        new maplibregl.Popup({
+            offset: 10,
+            closeButton: false,
+        })
+            .setLngLat(coordinates)
+            .setHTML(name)
+            .addTo(map);
+    });
+}
+```
+
+
