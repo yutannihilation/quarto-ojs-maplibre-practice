@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 3c9e022e-3a0e-4b80-bcbc-04f576c7cc15
+      url: 'https://yutani.quarto.pub/using-maplibre-on-quarto-ojs'

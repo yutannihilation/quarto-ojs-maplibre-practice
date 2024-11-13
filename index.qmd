@@ -3,6 +3,8 @@ title: "Using MapLibre on Quarto OJS"
 format: html
 ---
 
+Disclaimer: I'm poor at JavaScript!
+
 ## References
 
 * [Hello MapLibre / Nicolas Lambert | Observable](https://observablehq.com/@neocartocnrs/hello-maplibre)
@@ -79,6 +81,7 @@ Japan_with_marker = {
 
 ```{r}
 #| warning: false
+#| eval: !expr '!file.exists("data/point.geojson")'
 library(sf)
 
 d <- read_sf("data-raw/P27-13_13/")
@@ -95,7 +98,7 @@ Japan_geojson = {
         container,
         style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json',
         center: [139.7024, 35.6598],
-        zoom: 15,
+        zoom: 13,
     }));
 
     map.on('load', async () => {

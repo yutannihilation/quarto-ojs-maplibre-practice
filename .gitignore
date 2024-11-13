@@ -1,4 +1,6 @@
 /.quarto
 /*_files
-data-raw
+/index.html
 /.quarto/
+
+/data-raw
