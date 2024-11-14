@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -63,18 +63,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="index_files/libs/quarto-html/anchor.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-5bdc1ec511977dd36301403cf8f4f68d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script type="module" src="index_files/libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="index_files/libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <script type="ojs-define">
-
 {"contents":[{"name":"markers","value":{"long":[139.7036],"lat":[35.659],"popup":[{"options":{"offset":25,"closeButton":false},"title":"渋谷ヒカリエ"}]}}]}
-
 </script>
-
 
 
 </head>
@@ -192,9 +189,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="pass-geospatial-data" class="level2">
-<h2 class="anchored" data-anchor-id="pass-geospatial-data">Pass Geospatial data</h2>
-<p><strong>国土交通省国土数値情報ダウンロードサイト（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html" class="uri">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html</a>）を加工して作成</strong></p>
+<section id="pass-geospatial-data-point" class="level2">
+<h2 class="anchored" data-anchor-id="pass-geospatial-data-point">Pass Geospatial data (Point)</h2>
+<p><strong>国土交通省国土数値情報ダウンロードサイト（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html" class="uri">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html</a>）のデータを加工して作成</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -205,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_sf</span>(<span class="st">"data/point.geojson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-startfrom="94" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 93;"><span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>Japan_geojson <span class="op">=</span> {</span>
+<div class="sourceCode cell-code" id="cb7" data-startfrom="94" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 93;"><span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>Japan_geojson_point <span class="op">=</span> {</span>
 <span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> container <span class="op">=</span> <span class="kw">yield</span> <span class="fu">html</span><span class="vs">`&lt;div style="height:400px;"&gt;`</span><span class="op">;</span></span>
 <span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> map <span class="op">=</span> (container<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
 <span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>        container<span class="op">,</span></span>
@@ -226,8 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> <span class="st">'symbol'</span><span class="op">,</span></span>
 <span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>            <span class="dt">source</span><span class="op">:</span> <span class="st">'facility_point'</span><span class="op">,</span></span>
 <span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>            <span class="dt">layout</span><span class="op">:</span> {</span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>            <span class="st">'icon-image'</span><span class="op">:</span> <span class="st">'facility_icon'</span><span class="op">,</span></span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>            <span class="st">'icon-size'</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>                <span class="st">'icon-image'</span><span class="op">:</span> <span class="st">'facility_icon'</span><span class="op">,</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>                <span class="st">'icon-size'</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span></span>
 <span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
 <span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
 <span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
@@ -255,11 +252,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="pass-geospatial-data-line" class="level2">
+<h2 class="anchored" data-anchor-id="pass-geospatial-data-line">Pass Geospatial data (Line)</h2>
+<p><strong>国土交通省国土数値情報ダウンロードサイト（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N07.html" class="uri">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N07.html</a>）のデータを加工して作成</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data-raw/N07-11_13_GML/"</span>, <span class="at">options =</span> <span class="st">"ENCODING=CP932"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(d) <span class="ot">&lt;-</span> <span class="dv">4612</span>L</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>center <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">139.7024</span>, <span class="fl">35.6598</span>)),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs =</span> <span class="dv">4612</span>L</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">company =</span> N07_002) <span class="sc">|&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重すぎるので、ざっくり1km以内にかかっているものに絞る</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    sf<span class="sc">::</span><span class="fu">st_distance</span>(geometry, {{ center }}) <span class="sc">&lt;</span> units<span class="sc">::</span><span class="fu">set_units</span>(<span class="dv">1</span>, km)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_sf</span>(<span class="st">"data/line.geojson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" data-startfrom="166" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 165;"><span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>Japan_geojson_line <span class="op">=</span> {</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> container <span class="op">=</span> <span class="kw">yield</span> <span class="fu">html</span><span class="vs">`&lt;div style="height:400px;"&gt;`</span><span class="op">;</span></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> map <span class="op">=</span> (container<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>        container<span class="op">,</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>        <span class="dt">style</span><span class="op">:</span> <span class="st">'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json'</span><span class="op">,</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>        <span class="dt">center</span><span class="op">:</span> [<span class="fl">139.7024</span><span class="op">,</span> <span class="fl">35.6598</span>]<span class="op">,</span></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>        <span class="dt">zoom</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>    }))<span class="op">;</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">'load'</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>        map<span class="op">.</span><span class="fu">addSource</span>(<span class="st">'tokyo_bus'</span><span class="op">,</span> {</span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> <span class="st">'geojson'</span><span class="op">,</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>            <span class="dt">data</span><span class="op">:</span> <span class="st">'./data/line.geojson'</span><span class="op">,</span></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>        map<span class="op">.</span><span class="fu">addLayer</span>({</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>            <span class="dt">id</span><span class="op">:</span> <span class="st">'tokyo_bus'</span><span class="op">,</span></span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> <span class="st">'line'</span><span class="op">,</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a>            <span class="dt">source</span><span class="op">:</span> <span class="st">'tokyo_bus'</span><span class="op">,</span></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>            <span class="dt">layout</span><span class="op">:</span> {</span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>                <span class="st">'line-join'</span><span class="op">:</span> <span class="st">'round'</span><span class="op">,</span></span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>                <span class="st">'line-cap'</span><span class="op">:</span> <span class="st">'round'</span><span class="op">,</span></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a>            <span class="dt">paint</span><span class="op">:</span> {</span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>                <span class="st">'line-color'</span><span class="op">:</span> <span class="st">'#0067c0'</span><span class="op">,</span></span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a>                <span class="st">'line-width'</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a>            <span class="dt">filter</span><span class="op">:</span> [<span class="st">'=='</span><span class="op">,</span> <span class="st">'company'</span><span class="op">,</span> <span class="st">'都営バス'</span>]<span class="op">,</span></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section>
+<section id="pass-geospatial-data-polygon" class="level2">
+<h2 class="anchored" data-anchor-id="pass-geospatial-data-polygon">Pass Geospatial data (Polygon)</h2>
+<p><strong>国土交通省国土数値情報ダウンロードサイト（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-L05.html" class="uri">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-L05.html</a>）のデータを加工して作成</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>prepare <span class="ot">&lt;-</span> \(x) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">area =</span> L05_002) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">st_crs&lt;-</span><span class="st">`</span>(<span class="dv">4612</span>L)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data-raw/L05-1-09_13_GML/"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data-raw/L05-2-09_13_GML/"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prepare</span>(d1),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prepare</span>(d2)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_sf</span>(<span class="st">"data/polygon.geojson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" data-startfrom="225" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 224;"><span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a>Japan_geojson_polygon <span class="op">=</span> {</span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> container <span class="op">=</span> <span class="kw">yield</span> <span class="fu">html</span><span class="vs">`&lt;div style="height:400px;"&gt;`</span><span class="op">;</span></span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> map <span class="op">=</span> (container<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a>        container<span class="op">,</span></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a>        <span class="dt">style</span><span class="op">:</span> <span class="st">'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json'</span><span class="op">,</span></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a>        <span class="dt">center</span><span class="op">:</span> [<span class="fl">139.7024</span><span class="op">,</span> <span class="fl">35.6598</span>]<span class="op">,</span></span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a>        <span class="dt">zoom</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span></span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a>    }))<span class="op">;</span></span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">'load'</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a>        map<span class="op">.</span><span class="fu">addSource</span>(<span class="st">'industrial_area'</span><span class="op">,</span> {</span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> <span class="st">'geojson'</span><span class="op">,</span></span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a>            <span class="dt">data</span><span class="op">:</span> <span class="st">'./data/polygon.geojson'</span><span class="op">,</span></span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a>        map<span class="op">.</span><span class="fu">addLayer</span>({</span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a>            <span class="dt">id</span><span class="op">:</span> <span class="st">'industrial_area'</span><span class="op">,</span></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> <span class="st">'fill'</span><span class="op">,</span></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a>            <span class="dt">source</span><span class="op">:</span> <span class="st">'industrial_area'</span><span class="op">,</span></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a>            <span class="dt">layout</span><span class="op">:</span> {}<span class="op">,</span></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a>            <span class="dt">paint</span><span class="op">:</span> {</span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a>            <span class="st">'fill-color'</span><span class="op">:</span> <span class="st">'#FD7E00'</span><span class="op">,</span></span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a>            <span class="st">'fill-opacity'</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span></span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">'click'</span><span class="op">,</span> <span class="st">'industrial_area'</span><span class="op">,</span> (e) <span class="kw">=&gt;</span> {</span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> name <span class="op">=</span> e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">area</span><span class="op">;</span></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a>        <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Popup</span>({</span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a>            <span class="dt">closeButton</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">setLngLat</span>(e<span class="op">.</span><span class="at">lngLat</span>)</span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">setHTML</span>(name)</span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section>
 
 </main>
 <!-- /main column -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcGxpYnJlZ2wgPSByZXF1aXJlKFwibWFwbGlicmUtZ2xANC4zLjJcIilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGxpbmsgaHJlZj0naHR0cHM6Ly91bnBrZy5jb20vbWFwbGlicmUtZ2xANC4zLjIvZGlzdC9tYXBsaWJyZS1nbC5jc3MnIHJlbD0nc3R5bGVzaGVldCcgLz5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJKYXBhbiA9IHtcbiAgICBjb25zdCBjb250YWluZXIgPSB5aWVsZCBodG1sYDxkaXYgc3R5bGU9XCJoZWlnaHQ6NDAwcHg7XCI+YDtcbiAgICBjb25zdCBtYXAgPSAoY29udGFpbmVyLnZhbHVlID0gbmV3IG1hcGxpYnJlZ2wuTWFwKHtcbiAgICAgICAgY29udGFpbmVyLFxuICAgICAgICBzdHlsZTogJ2h0dHBzOi8vdGlsZS5vcGVuc3RyZWV0bWFwLmpwL3N0eWxlcy9vc20tYnJpZ2h0LWphL3N0eWxlLmpzb24nLFxuICAgICAgICBjZW50ZXI6IFsxMzkuNzAyNCwgMzUuNjU5OF0sXG4gICAgICAgIHpvb206IDE2LFxuICAgIH0pKTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkphcGFuX3dpdGhfbWFya2VyID0ge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IHlpZWxkIGh0bWxgPGRpdiBzdHlsZT1cImhlaWdodDo0MDBweDtcIj5gO1xuICAgIGNvbnN0IG1hcCA9IChjb250YWluZXIudmFsdWUgPSBuZXcgbWFwbGlicmVnbC5NYXAoe1xuICAgICAgICBjb250YWluZXIsXG4gICAgICAgIHN0eWxlOiAnaHR0cHM6Ly90aWxlLm9wZW5zdHJlZXRtYXAuanAvc3R5bGVzL29zbS1icmlnaHQtamEvc3R5bGUuanNvbicsXG4gICAgICAgIGNlbnRlcjogWzEzOS43MDI0LCAzNS42NTk4XSxcbiAgICAgICAgem9vbTogMTYsXG4gICAgfSkpO1xuXG4gICAgbWFwLm9uKCdsb2FkJywgYXN5bmMgKCkgPT4ge1xuICAgICAgICB0cmFuc3Bvc2UobWFya2VycykubWFwKChtKSA9PiB7XG4gICAgICAgICAgICB2YXIgcG9wdXAgPSBuZXcgbWFwbGlicmVnbC5Qb3B1cChtLnBvcHVwLm9wdGlvbnMpLnNldFRleHQobS5wb3B1cC50aXRsZSk7XG4gICAgICAgICAgICB2YXIgbG9jID0gW20ubG9uZywgbS5sYXRdO1xuICAgICAgICAgICAgdmFyIHRtcCA9IG5ldyBtYXBsaWJyZWdsLk1hcmtlcigpLnNldExuZ0xhdChsb2MpLnNldFBvcHVwKHBvcHVwKS5hZGRUbyhtYXApO1xuICAgICAgICB9KTtcbiAgICB9KVxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiSmFwYW5fZ2VvanNvbiA9IHtcbiAgICBjb25zdCBjb250YWluZXIgPSB5aWVsZCBodG1sYDxkaXYgc3R5bGU9XCJoZWlnaHQ6NDAwcHg7XCI+YDtcbiAgICBjb25zdCBtYXAgPSAoY29udGFpbmVyLnZhbHVlID0gbmV3IG1hcGxpYnJlZ2wuTWFwKHtcbiAgICAgICAgY29udGFpbmVyLFxuICAgICAgICBzdHlsZTogJ2h0dHBzOi8vdGlsZS5vcGVuc3RyZWV0bWFwLmpwL3N0eWxlcy9vc20tYnJpZ2h0LWphL3N0eWxlLmpzb24nLFxuICAgICAgICBjZW50ZXI6IFsxMzkuNzAyNCwgMzUuNjU5OF0sXG4gICAgICAgIHpvb206IDEzLFxuICAgIH0pKTtcblxuICAgIG1hcC5vbignbG9hZCcsIGFzeW5jICgpID0+IHtcbiAgICAgICAgY29uc3QgaWNvbkltYWdlID0gYXdhaXQgbWFwLmxvYWRJbWFnZSgnLi9pbWFnZXMvaWNvbi5wbmcnKTtcbiAgICAgICAgbWFwLmFkZEltYWdlKCdmYWNpbGl0eV9pY29uJywgaWNvbkltYWdlLmRhdGEpO1xuICAgICAgICBtYXAuYWRkU291cmNlKCdmYWNpbGl0eV9wb2ludCcsIHtcbiAgICAgICAgICAgIHR5cGU6ICdnZW9qc29uJyxcbiAgICAgICAgICAgIGRhdGE6ICcuL2RhdGEvcG9pbnQuZ2VvanNvbicsXG4gICAgICAgIH0pO1xuICAgICAgICBtYXAuYWRkTGF5ZXIoe1xuICAgICAgICAgICAgaWQ6ICdmYWNpbGl0eV9wb2ludCcsXG4gICAgICAgICAgICB0eXBlOiAnc3ltYm9sJyxcbiAgICAgICAgICAgIHNvdXJjZTogJ2ZhY2lsaXR5X3BvaW50JyxcbiAgICAgICAgICAgIGxheW91dDoge1xuICAgICAgICAgICAgJ2ljb24taW1hZ2UnOiAnZmFjaWxpdHlfaWNvbicsXG4gICAgICAgICAgICAnaWNvbi1zaXplJzogMC4xLFxuICAgICAgICAgICAgfSxcbiAgICAgICAgfSk7XG4gICAgfSk7XG5cbiAgICBtYXAub24oJ2NsaWNrJywgJ2ZhY2lsaXR5X3BvaW50JywgKGUpID0+IHtcbiAgICAgICAgdmFyIGNvb3JkaW5hdGVzID0gZS5mZWF0dXJlc1swXS5nZW9tZXRyeS5jb29yZGluYXRlcy5zbGljZSgpO1xuICAgICAgICB2YXIgbmFtZSA9IGUuZmVhdHVyZXNbMF0ucHJvcGVydGllcy5uYW1lO1xuXG4gICAgICAgIHdoaWxlIChNYXRoLmFicyhlLmxuZ0xhdC5sbmcgLSBjb29yZGluYXRlc1swXSkgPiAxODApIHtcbiAgICAgICAgICAgIGNvb3JkaW5hdGVzWzBdICs9IGUubG5nTGF0LmxuZyA+IGNvb3JkaW5hdGVzWzBdID8gMzYwIDogLTM2MDtcbiAgICAgICAgfVxuICAgICAgICBuZXcgbWFwbGlicmVnbC5Qb3B1cCh7XG4gICAgICAgICAgICBvZmZzZXQ6IDEwLFxuICAgICAgICAgICAgY2xvc2VCdXR0b246IGZhbHNlLFxuICAgICAgICB9KVxuICAgICAgICAgICAgLnNldExuZ0xhdChjb29yZGluYXRlcylcbiAgICAgICAgICAgIC5zZXRIVE1MKG5hbWUpXG4gICAgICAgICAgICAuYWRkVG8obWFwKTtcbiAgICB9KTtcbn1cbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcGxpYnJlZ2wgPSByZXF1aXJlKFwibWFwbGlicmUtZ2xANC4zLjJcIilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGxpbmsgaHJlZj0naHR0cHM6Ly91bnBrZy5jb20vbWFwbGlicmUtZ2xANC4zLjIvZGlzdC9tYXBsaWJyZS1nbC5jc3MnIHJlbD0nc3R5bGVzaGVldCcgLz5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJKYXBhbiA9IHtcbiAgICBjb25zdCBjb250YWluZXIgPSB5aWVsZCBodG1sYDxkaXYgc3R5bGU9XCJoZWlnaHQ6NDAwcHg7XCI+YDtcbiAgICBjb25zdCBtYXAgPSAoY29udGFpbmVyLnZhbHVlID0gbmV3IG1hcGxpYnJlZ2wuTWFwKHtcbiAgICAgICAgY29udGFpbmVyLFxuICAgICAgICBzdHlsZTogJ2h0dHBzOi8vdGlsZS5vcGVuc3RyZWV0bWFwLmpwL3N0eWxlcy9vc20tYnJpZ2h0LWphL3N0eWxlLmpzb24nLFxuICAgICAgICBjZW50ZXI6IFsxMzkuNzAyNCwgMzUuNjU5OF0sXG4gICAgICAgIHpvb206IDE2LFxuICAgIH0pKTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkphcGFuX3dpdGhfbWFya2VyID0ge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IHlpZWxkIGh0bWxgPGRpdiBzdHlsZT1cImhlaWdodDo0MDBweDtcIj5gO1xuICAgIGNvbnN0IG1hcCA9IChjb250YWluZXIudmFsdWUgPSBuZXcgbWFwbGlicmVnbC5NYXAoe1xuICAgICAgICBjb250YWluZXIsXG4gICAgICAgIHN0eWxlOiAnaHR0cHM6Ly90aWxlLm9wZW5zdHJlZXRtYXAuanAvc3R5bGVzL29zbS1icmlnaHQtamEvc3R5bGUuanNvbicsXG4gICAgICAgIGNlbnRlcjogWzEzOS43MDI0LCAzNS42NTk4XSxcbiAgICAgICAgem9vbTogMTYsXG4gICAgfSkpO1xuXG4gICAgbWFwLm9uKCdsb2FkJywgYXN5bmMgKCkgPT4ge1xuICAgICAgICB0cmFuc3Bvc2UobWFya2VycykubWFwKChtKSA9PiB7XG4gICAgICAgICAgICB2YXIgcG9wdXAgPSBuZXcgbWFwbGlicmVnbC5Qb3B1cChtLnBvcHVwLm9wdGlvbnMpLnNldFRleHQobS5wb3B1cC50aXRsZSk7XG4gICAgICAgICAgICB2YXIgbG9jID0gW20ubG9uZywgbS5sYXRdO1xuICAgICAgICAgICAgdmFyIHRtcCA9IG5ldyBtYXBsaWJyZWdsLk1hcmtlcigpLnNldExuZ0xhdChsb2MpLnNldFBvcHVwKHBvcHVwKS5hZGRUbyhtYXApO1xuICAgICAgICB9KTtcbiAgICB9KVxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiSmFwYW5fZ2VvanNvbl9wb2ludCA9IHtcbiAgICBjb25zdCBjb250YWluZXIgPSB5aWVsZCBodG1sYDxkaXYgc3R5bGU9XCJoZWlnaHQ6NDAwcHg7XCI+YDtcbiAgICBjb25zdCBtYXAgPSAoY29udGFpbmVyLnZhbHVlID0gbmV3IG1hcGxpYnJlZ2wuTWFwKHtcbiAgICAgICAgY29udGFpbmVyLFxuICAgICAgICBzdHlsZTogJ2h0dHBzOi8vdGlsZS5vcGVuc3RyZWV0bWFwLmpwL3N0eWxlcy9vc20tYnJpZ2h0LWphL3N0eWxlLmpzb24nLFxuICAgICAgICBjZW50ZXI6IFsxMzkuNzAyNCwgMzUuNjU5OF0sXG4gICAgICAgIHpvb206IDEzLFxuICAgIH0pKTtcblxuICAgIG1hcC5vbignbG9hZCcsIGFzeW5jICgpID0+IHtcbiAgICAgICAgY29uc3QgaWNvbkltYWdlID0gYXdhaXQgbWFwLmxvYWRJbWFnZSgnLi9pbWFnZXMvaWNvbi5wbmcnKTtcbiAgICAgICAgbWFwLmFkZEltYWdlKCdmYWNpbGl0eV9pY29uJywgaWNvbkltYWdlLmRhdGEpO1xuICAgICAgICBtYXAuYWRkU291cmNlKCdmYWNpbGl0eV9wb2ludCcsIHtcbiAgICAgICAgICAgIHR5cGU6ICdnZW9qc29uJyxcbiAgICAgICAgICAgIGRhdGE6ICcuL2RhdGEvcG9pbnQuZ2VvanNvbicsXG4gICAgICAgIH0pO1xuICAgICAgICBtYXAuYWRkTGF5ZXIoe1xuICAgICAgICAgICAgaWQ6ICdmYWNpbGl0eV9wb2ludCcsXG4gICAgICAgICAgICB0eXBlOiAnc3ltYm9sJyxcbiAgICAgICAgICAgIHNvdXJjZTogJ2ZhY2lsaXR5X3BvaW50JyxcbiAgICAgICAgICAgIGxheW91dDoge1xuICAgICAgICAgICAgICAgICdpY29uLWltYWdlJzogJ2ZhY2lsaXR5X2ljb24nLFxuICAgICAgICAgICAgICAgICdpY29uLXNpemUnOiAwLjEsXG4gICAgICAgICAgICB9LFxuICAgICAgICB9KTtcbiAgICB9KTtcblxuICAgIG1hcC5vbignY2xpY2snLCAnZmFjaWxpdHlfcG9pbnQnLCAoZSkgPT4ge1xuICAgICAgICB2YXIgY29vcmRpbmF0ZXMgPSBlLmZlYXR1cmVzWzBdLmdlb21ldHJ5LmNvb3JkaW5hdGVzLnNsaWNlKCk7XG4gICAgICAgIHZhciBuYW1lID0gZS5mZWF0dXJlc1swXS5wcm9wZXJ0aWVzLm5hbWU7XG5cbiAgICAgICAgd2hpbGUgKE1hdGguYWJzKGUubG5nTGF0LmxuZyAtIGNvb3JkaW5hdGVzWzBdKSA+IDE4MCkge1xuICAgICAgICAgICAgY29vcmRpbmF0ZXNbMF0gKz0gZS5sbmdMYXQubG5nID4gY29vcmRpbmF0ZXNbMF0gPyAzNjAgOiAtMzYwO1xuICAgICAgICB9XG4gICAgICAgIG5ldyBtYXBsaWJyZWdsLlBvcHVwKHtcbiAgICAgICAgICAgIG9mZnNldDogMTAsXG4gICAgICAgICAgICBjbG9zZUJ1dHRvbjogZmFsc2UsXG4gICAgICAgIH0pXG4gICAgICAgICAgICAuc2V0TG5nTGF0KGNvb3JkaW5hdGVzKVxuICAgICAgICAgICAgLnNldEhUTUwobmFtZSlcbiAgICAgICAgICAgIC5hZGRUbyhtYXApO1xuICAgIH0pO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiSmFwYW5fZ2VvanNvbl9saW5lID0ge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IHlpZWxkIGh0bWxgPGRpdiBzdHlsZT1cImhlaWdodDo0MDBweDtcIj5gO1xuICAgIGNvbnN0IG1hcCA9IChjb250YWluZXIudmFsdWUgPSBuZXcgbWFwbGlicmVnbC5NYXAoe1xuICAgICAgICBjb250YWluZXIsXG4gICAgICAgIHN0eWxlOiAnaHR0cHM6Ly90aWxlLm9wZW5zdHJlZXRtYXAuanAvc3R5bGVzL29zbS1icmlnaHQtamEvc3R5bGUuanNvbicsXG4gICAgICAgIGNlbnRlcjogWzEzOS43MDI0LCAzNS42NTk4XSxcbiAgICAgICAgem9vbTogMTMsXG4gICAgfSkpO1xuXG4gICAgbWFwLm9uKCdsb2FkJywgYXN5bmMgKCkgPT4ge1xuICAgICAgICBtYXAuYWRkU291cmNlKCd0b2t5b19idXMnLCB7XG4gICAgICAgICAgICB0eXBlOiAnZ2VvanNvbicsXG4gICAgICAgICAgICBkYXRhOiAnLi9kYXRhL2xpbmUuZ2VvanNvbicsXG4gICAgICAgIH0pO1xuICAgICAgICBtYXAuYWRkTGF5ZXIoe1xuICAgICAgICAgICAgaWQ6ICd0b2t5b19idXMnLFxuICAgICAgICAgICAgdHlwZTogJ2xpbmUnLFxuICAgICAgICAgICAgc291cmNlOiAndG9reW9fYnVzJyxcbiAgICAgICAgICAgIGxheW91dDoge1xuICAgICAgICAgICAgICAgICdsaW5lLWpvaW4nOiAncm91bmQnLFxuICAgICAgICAgICAgICAgICdsaW5lLWNhcCc6ICdyb3VuZCcsXG4gICAgICAgICAgICB9LFxuICAgICAgICAgICAgcGFpbnQ6IHtcbiAgICAgICAgICAgICAgICAnbGluZS1jb2xvcic6ICcjMDA2N2MwJyxcbiAgICAgICAgICAgICAgICAnbGluZS13aWR0aCc6IDUsXG4gICAgICAgICAgICB9LFxuICAgICAgICAgICAgZmlsdGVyOiBbJz09JywgJ2NvbXBhbnknLCAn6YO95Za244OQ44K5J10sXG4gICAgICAgIH0pO1xuICAgIH0pO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiSmFwYW5fZ2VvanNvbl9wb2x5Z29uID0ge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IHlpZWxkIGh0bWxgPGRpdiBzdHlsZT1cImhlaWdodDo0MDBweDtcIj5gO1xuICAgIGNvbnN0IG1hcCA9IChjb250YWluZXIudmFsdWUgPSBuZXcgbWFwbGlicmVnbC5NYXAoe1xuICAgICAgICBjb250YWluZXIsXG4gICAgICAgIHN0eWxlOiAnaHR0cHM6Ly90aWxlLm9wZW5zdHJlZXRtYXAuanAvc3R5bGVzL29zbS1icmlnaHQtamEvc3R5bGUuanNvbicsXG4gICAgICAgIGNlbnRlcjogWzEzOS43MDI0LCAzNS42NTk4XSxcbiAgICAgICAgem9vbTogMTMsXG4gICAgfSkpO1xuXG4gICAgbWFwLm9uKCdsb2FkJywgYXN5bmMgKCkgPT4ge1xuICAgICAgICBtYXAuYWRkU291cmNlKCdpbmR1c3RyaWFsX2FyZWEnLCB7XG4gICAgICAgICAgICB0eXBlOiAnZ2VvanNvbicsXG4gICAgICAgICAgICBkYXRhOiAnLi9kYXRhL3BvbHlnb24uZ2VvanNvbicsXG4gICAgICAgIH0pO1xuICAgICAgICBtYXAuYWRkTGF5ZXIoe1xuICAgICAgICAgICAgaWQ6ICdpbmR1c3RyaWFsX2FyZWEnLFxuICAgICAgICAgICAgdHlwZTogJ2ZpbGwnLFxuICAgICAgICAgICAgc291cmNlOiAnaW5kdXN0cmlhbF9hcmVhJyxcbiAgICAgICAgICAgIGxheW91dDoge30sXG4gICAgICAgICAgICBwYWludDoge1xuICAgICAgICAgICAgJ2ZpbGwtY29sb3InOiAnI0ZEN0UwMCcsXG4gICAgICAgICAgICAnZmlsbC1vcGFjaXR5JzogMC44LFxuICAgICAgICAgICAgfSxcbiAgICAgICAgfSk7XG4gICAgfSk7XG5cbiAgICBtYXAub24oJ2NsaWNrJywgJ2luZHVzdHJpYWxfYXJlYScsIChlKSA9PiB7XG4gICAgICAgIHZhciBuYW1lID0gZS5mZWF0dXJlc1swXS5wcm9wZXJ0aWVzLmFyZWE7XG4gICAgICAgIG5ldyBtYXBsaWJyZWdsLlBvcHVwKHtcbiAgICAgICAgICAgIGNsb3NlQnV0dG9uOiBmYWxzZSxcbiAgICAgICAgfSlcbiAgICAgICAgICAgIC5zZXRMbmdMYXQoZS5sbmdMYXQpXG4gICAgICAgICAgICAuc2V0SFRNTChuYW1lKVxuICAgICAgICAgICAgLmFkZFRvKG1hcCk7XG4gICAgfSk7XG59XG4ifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
