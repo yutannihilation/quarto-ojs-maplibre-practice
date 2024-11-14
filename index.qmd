@@ -75,9 +75,9 @@ Japan_with_marker = {
 }
 ```
 
-## Pass Geospatial data
+## Pass Geospatial data (Point)
 
-**国土交通省国土数値情報ダウンロードサイト（<https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html>）を加工して作成**
+**国土交通省国土数値情報ダウンロードサイト（<https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P27.html>）のデータを加工して作成**
 
 ```{r}
 #| warning: false
@@ -92,7 +92,7 @@ d |>
 ```
 
 ```{ojs}
-Japan_geojson = {
+Japan_geojson_point = {
     const container = yield html`<div style="height:400px;">`;
     const map = (container.value = new maplibregl.Map({
         container,
@@ -113,8 +113,8 @@ Japan_geojson = {
             type: 'symbol',
             source: 'facility_point',
             layout: {
-            'icon-image': 'facility_icon',
-            'icon-size': 0.1,
+                'icon-image': 'facility_icon',
+                'icon-size': 0.1,
             },
         });
     });
@@ -136,5 +136,132 @@ Japan_geojson = {
     });
 }
 ```
+
+## Pass Geospatial data (Line)
+
+**国土交通省国土数値情報ダウンロードサイト（<https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N07.html>）のデータを加工して作成**
+
+```{r}
+#| warning: false
+#| eval: !expr '!file.exists("data/line.geojson")'
+library(sf)
+
+d <- read_sf("data-raw/N07-11_13_GML/", options = "ENCODING=CP932")
+st_crs(d) <- 4612L
+
+center <- st_sfc(
+  st_point(c(139.7024, 35.6598)),
+  crs = 4612L
+)
+
+d |>
+  dplyr::select(company = N07_002) |>
+  # 重すぎるので、ざっくり1km以内にかかっているものに絞る
+  dplyr::filter(
+    sf::st_distance(geometry, {{ center }}) < units::set_units(1, km)
+  ) |>
+  write_sf("data/line.geojson")
+```
+
+```{ojs}
+Japan_geojson_line = {
+    const container = yield html`<div style="height:400px;">`;
+    const map = (container.value = new maplibregl.Map({
+        container,
+        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json',
+        center: [139.7024, 35.6598],
+        zoom: 13,
+    }));
+
+    map.on('load', async () => {
+        map.addSource('tokyo_bus', {
+            type: 'geojson',
+            data: './data/line.geojson',
+        });
+        map.addLayer({
+            id: 'tokyo_bus',
+            type: 'line',
+            source: 'tokyo_bus',
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'round',
+            },
+            paint: {
+                'line-color': '#0067c0',
+                'line-width': 5,
+            },
+            filter: ['==', 'company', '都営バス'],
+        });
+    });
+}
+```
+
+## Pass Geospatial data (Polygon)
+
+**国土交通省国土数値情報ダウンロードサイト（<https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-L05.html>）のデータを加工して作成**
+
+```{r}
+#| warning: false
+#| eval: !expr '!file.exists("data/polygon.geojson")'
+library(sf)
+
+prepare <- \(x) {
+  x |>
+  dplyr::select(area = L05_002) |>
+  `st_crs<-`(4612L)
+}
+
+d1 <- read_sf("data-raw/L05-1-09_13_GML/")
+d2 <- read_sf("data-raw/L05-2-09_13_GML/")
+d <- rbind(
+  prepare(d1),
+  prepare(d2)
+)
+
+d |>
+  write_sf("data/polygon.geojson")
+```
+
+```{ojs}
+Japan_geojson_polygon = {
+    const container = yield html`<div style="height:400px;">`;
+    const map = (container.value = new maplibregl.Map({
+        container,
+        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json',
+        center: [139.7024, 35.6598],
+        zoom: 13,
+    }));
+
+    map.on('load', async () => {
+        map.addSource('industrial_area', {
+            type: 'geojson',
+            data: './data/polygon.geojson',
+        });
+        map.addLayer({
+            id: 'industrial_area',
+            type: 'fill',
+            source: 'industrial_area',
+            layout: {},
+            paint: {
+            'fill-color': '#FD7E00',
+            'fill-opacity': 0.8,
+            },
+        });
+    });
+
+    map.on('click', 'industrial_area', (e) => {
+        var name = e.features[0].properties.area;
+        new maplibregl.Popup({
+            closeButton: false,
+        })
+            .setLngLat(e.lngLat)
+            .setHTML(name)
+            .addTo(map);
+    });
+}
+```
+
+
+
 
 
